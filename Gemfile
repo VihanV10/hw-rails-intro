@@ -43,7 +43,7 @@ group :development, :test do
   gem "sqlite3", ">= 1.4"
 
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
-  gem "debug", platforms: %i[ mri windows ]
+  gem 'debug', '~> 1.11', '>= 1.11.1', platforms: %i[ mri windows ]
 end
 
 group :development do
