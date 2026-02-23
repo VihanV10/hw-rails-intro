@@ -1,5 +1,12 @@
+# Part 0.A - Preparing to Deploy To Heroku
 
 ## Initial Heroku Deployment
+
+> [!TIP]
+> While this "Part" is listed as 0.A, you will want to ensure you have cloned the git repo for this CHIP prior to doing
+> any of this work. Once cloned, you can set up your new Heroku app, push the codebase to Heroku and set up the
+> use of the database (all of this is detailed below). Then you can and should proceed with the work in the rest of
+> the chip.
 
 Log in to your Heroku account by typing the command: `heroku login -i` in the terminal. Provide your nyu.edu 
 (or approved alternative) email but when it asks for a password, instead you must find your **API Key** from the 
@@ -13,25 +20,16 @@ your local git repo as a remote named `heroku`, as we have done in the past, so 
 
 ```bash
 heroku create hw-rails-intro
-heroku git:remote -a hw-rails-intro
 ```
 
 A "stack" is a term that describes the operating system and default software that you application is running on. 
-Heroku has a [large set of stacks](https://devcenter.heroku.com/articles/stack) you can select from. In this case, 
-`heroku-24` (the default stack) includes the correct versions of Rails.
+Heroku has a [large set of stacks](https://devcenter.heroku.com/articles/stack) you can select from. In this case, `heroku-24` (the default stack) includes 
+the correct versions of Rails.
 
-If you haven't yet made a commit to your new branch, do that now (you probably have a change in the `db` folder):
-
-```bash
-git status # make sure you're on your new branch
-git add [..] # stage the updated files
-git commit -m [..] # write a message
-```
-
-Now, push your current branch to the Heroku remote's `main` branch:
+Now, push your `main` branch to the Heroku remote's `main` branch:
 
 ```bash
-git push heroku <YOUR_BRANCH>:main
+git push heroku main
 ```
 
 (You may see the following warning the first time - it's fine. Answer "yes", and in the future you shouldn't see it anymore:)
@@ -41,24 +39,69 @@ git push heroku <YOUR_BRANCH>:main
     Are you sure you want to continue connecting (yes/no)?
     Please type 'yes' or 'no':
 
-Is the app running on Heroku? If you navigate to the heroku URL that is printed above the blue text at the end of the results from `git push heroku master` you'll get a "We're sorry, but something went wrong." error in the browser.
+Is the app running on Heroku? If you navigate to the heroku URL that is printed above the blue text at the end of the 
+results from `git push heroku master` you will likely see error messages. This is due to the fact that the database
+has not been created and associated with the app in Heroku. Let's address that next.
 
-As with the previous assignment "Hello Rails", `heroku logs` tell us that the `movies` table doesn't exist. So, as before, run the initial migration and import the seed data:
+Create a postrgesql database and attach it to the web application as follows:
 
-```sh
-heroku run bundle exec rails db:setup
-# or, if that doesn't work:
+```bash
+heroku addons:add heroku-postgresql:essential-0 -a hw-rails-intro
+```
+
+Notice the `heroku-postgresql:essential-0` designation. We are using the simplest, cheapest database that we need. Other
+options exist, depending on your tolerance for downtime, the cost, etc. You can read about these options on
+Heroku's documentation on the [Heroku-Postgresql AddOn](https://elements.heroku.com/addons/heroku-postgresql).
+Different offerings have different levels of service (including how much data you can store).
+
+Once you add the database to the app, you should see some output confirming the creation and attachment to the app:
+
+```bash
+Creating heroku-postgresql:essential-0 on ⬢ hw-rails-intro... ~$0.007/hour (max $5/month)
+Database should be available soon
+postgresql-shallow-18724 is being created in the background. The app will restart when complete...
+Use heroku addons:info postgresql-shallow-18724 to check creation progress
+Use heroku addons:docs heroku-postgresql to view documentation
+```
+
+You can also check the status of the database creation and attachment via the Heroku dashboard.
+
+> [!TIP]
+> As you can see we are using the Heroku CLI quite a bit.  There are many, many more operations that can be performed
+> on Heroku. Try investigating via `heroku --help` to see the commands. But for any command, additional help is available
+> (e.g., `heroku addons --help`).
+
+If we again check our app via a web browser, we should see an error message... but it's not overly helpful:
+![Error message in the browser](lib/assets/were_sorry.png)
+
+We will save you the pain of going through the logs, but perhaps you can guess what else needs to be done at this point.
+While we have a database, we have not yet performed a migration to get the database ready for our app. We should also 
+seed the database with some initial data.  So next, do the following:
+
+```bash
 heroku run bundle exec rails db:migrate
 heroku run bundle exec rails db:seed
 ```
 
-Since you're starting from a fresh Heroku app, the deployment should have detected your Postgres dependency and added the Postgres addon for you. If not, though, you'll get an error from the rake commands, and you should attach the addon manually:
+If all went well, you should see output that looks like this:
+```bash
+ENG-pd80-MBP01:hw-rails-intro peterdepasquale$ heroku run bundle exec rails db:migrate
+Running bundle exec rails db:migrate on ⬢ hw-rails-intro... up, run.3649
+I, [2026-02-23T23:25:46.139409 #2]  INFO -- : Migrating to CreateMovies (20250702121840)
+== 20250702121840 CreateMovies: migrating =====================================
+-- create_table(:movies)
+   -> 0.0153s
+== 20250702121840 CreateMovies: migrated (0.0154s) ============================
 
-```sh
-heroku addons -a <HEROKU_APP_NAME> # make sure the postgres addon doesn't already exist
-heroku addons:create heroku-postgresql -a <HEROKU_APP_NAME> # if necessary
+ENG-pd80-MBP01:hw-rails-intro peterdepasquale$ heroku run bundle exec rails db:seed
+Running bundle exec rails db:seed on ⬢ hw-rails-intro... up, run.7435
+ENG-pd80-MBP01:hw-rails-intro peterdepasquale$
 ```
 
 Now you should be able to navigate to your app's URL.
 
-**Note:** don't proceed past this point until you are able to complete the above successfully, or you won't be able to receive a grade for this assignment!
+**Note:** don't proceed past this point until you are able to complete the above successfully, or you won't be able 
+to receive a grade for this assignment!
+
+## Next
+[Part 1 - Filter The Movies List By Rating](Part-1-Filter-Movies-List-By-Rating.md)
