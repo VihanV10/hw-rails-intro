@@ -1,26 +1,28 @@
 
 ## Initial Heroku Deployment
 
-Log in to your Heroku account by typing the command: `heroku login -i` in the terminal. Provide your berkeley.edu (or approved alternative) email but when it asks for a password, instead you must find your **API Key** from the bottom of the [Account Settings page on Heroku](https://dashboard.heroku.com/account). Copy and paste this value in for the password.
+Log in to your Heroku account by typing the command: `heroku login -i` in the terminal. Provide your nyu.edu 
+(or approved alternative) email but when it asks for a password, instead you must find your **API Key** from the 
+bottom of the [Account Settings page on Heroku](https://dashboard.heroku.com/account). Copy and paste this value 
+in for the password.
 
-For CHIPS 5.3, you will need to complete the Heroku deployment to **your own individual Heroku app**, not your team app. Even if you are pair programming, you should complete a deployment on your own. We have created a Heroku app for you based on your email address, and it can be found by running the `heroku apps` command in your shell:
+For CHIPS 5.3, you will need to complete the Heroku deployment to your own individual Heroku app. 
 
-```sh
-heroku apps -t esaas # "esaas" is the name of the Heroku team your app is in
+Use the Heroku CLI (as you have in prior CHIPS) to create a new Heroku app for this CHIP. Once created, add Heroku to 
+your local git repo as a remote named `heroku`, as we have done in the past, so you can deploy to the app.
+
+```bash
+heroku create hw-rails-intro
+heroku git:remote -a hw-rails-intro
 ```
 
-Find the name of your personal app, then use it in the commands below. We'll add Heroku to your git repo as a remote named `heroku`, as we have done in the past, so you can deploy to the app.
-
-```
-heroku apps:favorites:add -a <HEROKU_APP_NAME>
-heroku git:remote -a <HEROKU_APP_NAME>
-```
-
-A "stack" is a term that describes the operating system and default software that you application is running on. Heroku has a [large set of stacks](https://devcenter.heroku.com/articles/stack) you can select from. In this case, `heroku-24` includes the right versions of rails.
+A "stack" is a term that describes the operating system and default software that you application is running on. 
+Heroku has a [large set of stacks](https://devcenter.heroku.com/articles/stack) you can select from. In this case, 
+`heroku-24` (the default stack) includes the correct versions of Rails.
 
 If you haven't yet made a commit to your new branch, do that now (you probably have a change in the `db` folder):
 
-```sh
+```bash
 git status # make sure you're on your new branch
 git add [..] # stage the updated files
 git commit -m [..] # write a message
@@ -28,7 +30,7 @@ git commit -m [..] # write a message
 
 Now, push your current branch to the Heroku remote's `main` branch:
 
-```sh
+```bash
 git push heroku <YOUR_BRANCH>:main
 ```
 
@@ -56,7 +58,6 @@ Since you're starting from a fresh Heroku app, the deployment should have detect
 heroku addons -a <HEROKU_APP_NAME> # make sure the postgres addon doesn't already exist
 heroku addons:create heroku-postgresql -a <HEROKU_APP_NAME> # if necessary
 ```
-
 
 Now you should be able to navigate to your app's URL.
 

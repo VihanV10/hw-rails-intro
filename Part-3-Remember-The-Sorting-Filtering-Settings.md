@@ -1,3 +1,4 @@
+# Part 3 - Remember The Sorting and Filtering Settings
 
 Make another feature branch for this part.
 
@@ -11,9 +12,15 @@ Aside from getting some practice with Git, it's good to keep changesets small wh
 </details>
 <br>
 
-OK, so the user can now click on the "Title" or "Release Date" drop-down and see movies sorted by those columns, and can additionally use the checkboxes to restrict the listing to movies with certain ratings only. And we have preserved RESTfulness, because the URI itself always contains the parameters that will control sorting and filtering. And changing one setting doesn't forget the other settings. We did all this by carefully controlling which parameters get passed in the form submit button (which uses `GET`).
+OK, so the user can now click on the "Title" or "Release Date" drop-down and see movies sorted by those columns, and 
+can additionally use the checkboxes to restrict the listing to movies with certain ratings only. And we have preserved 
+RESTfulness, because the URI itself always contains the parameters that will control sorting and filtering. And 
+changing one setting doesn't forget the other settings. We did all this by carefully controlling which parameters get 
+passed in the form submit button (which uses `GET`).
 
-But there's one more problem. If you navigate away from the Index view (say, to view the details of a movie) and then click the Back to List button to go back to the Index view, it seems to forget the sorting and filtering settings as well. (Go ahead and verify this.)
+But there's one more problem. If you navigate away from the Index view (say, to view the details of a movie) and 
+then click the Back to List button to go back to the Index view, it seems to forget the sorting and filtering 
+settings as well. (Go ahead and verify this.)
 
 <details>
 <summary>
@@ -26,15 +33,25 @@ The Back to List button is just a link for the RESTful route <code>GET /movies</
 
 So the last step is to remember these settings even if the user navigates away from and then back to the list of movies.
 
-Fortunately, HTTP-based SaaS has a way to "remember" state across otherwise-stateless requests: cookies. In Rails, the `session[]` hash provides a nice abstraction for using cookies: anything you put in there will basically be preserved for as long as that user's browser continues to correctly maintain cookies for your app. In other words, comparing it to something you've seen before, the session is like the `flash[]`, except that once you set something in the `session[]` it is remembered "forever" until you reset the session with `session.clear` or selectively delete things from it with `session.delete(:some_key)`.
+Fortunately, HTTP-based SaaS has a way to "remember" state across otherwise-stateless requests: cookies. In Rails, the 
+`session[]` hash provides a nice abstraction for using cookies: anything you put in there will basically be preserved 
+for as long as that user's browser continues to correctly maintain cookies for your app. In other words, comparing it 
+to something you've seen before, the session is like the `flash[]`, except that once you set something in the 
+`session[]` it is remembered "forever" until you reset the session with `session.clear` or selectively delete things 
+from it with `session.delete(:some_key)`.
 
-**A big caveat:** Since the default storage for the contents of `session` is a browser cookie, (a) users who reset or clear their cookies will also reset the session for RottenPotatoes (and many other sites), and (b) the contents of the `session`, once serialized, cannot exceed the size of an HTTP cookie (4 KiB).
+**A big caveat:** Since the default storage for the contents of `session` is a browser cookie, (a) users who reset or 
+clear their cookies will also reset the session for RottenPotatoes (and many other sites), and (b) the contents of 
+the `session`, once serialized, cannot exceed the size of an HTTP cookie (4 KiB).
 
-### Hints and caveats
+## Hints and caveats
 
-Once you have determined the correct sorting and filtering settings, before you render the view, use `session[]` to hold on to the those settings.
+Once you have determined the correct sorting and filtering settings, before you render the view, use `session[]` to 
+hold on to the those settings.
 
-Now modify the `index` action to detect whether _no_ `params[]` were passed that indicate sorting or filtering: this would be one way to tell that the user is landing on the home page _not_ having followed one of the special links we made in parts 1 and 2.
+Now modify the `index` action to detect whether _no_ `params[]` were passed that indicate sorting or filtering: this 
+would be one way to tell that the user is landing on the home page _not_ having followed one of the special links we 
+made in parts 1 and 2.
 
 <details>
 <summary>
@@ -45,8 +62,14 @@ One possibility is to look at the HTTP <code>Referer</code> [sic] header, which 
 </blockquote>
 </details>
 
-Be careful: If the user explicitly includes new sorting/filtering settings in `params[]`, the new values of those settings should then be saved.
+Be careful: If the user explicitly includes new sorting/filtering settings in `params[]`, the new values of those 
+settings should then be saved.
 
 As before, if a user unchecks all checkboxes, it means "display all ratings."
 
-Now, deploy to Heroku again. You should first commit your changes to the new feature branch, then choose whether to make a pull request and merge through GitHub (as in part 1) or merge locally (as in part 2). Either way, make sure your changes have made their way to the `main` branch, then deploy as before.
+Now, deploy to Heroku again. You should first commit your changes to the new feature branch, then choose whether to 
+make a pull request and merge through GitHub (as in part 1) or merge locally (as in part 2). Either way, make sure your 
+changes have made their way to the `main` branch, then deploy as before.
+
+## Next
+[Part 4 - Submitting Your Work](Part-4-Submitting-Your-Work.md)

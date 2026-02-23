@@ -15,7 +15,7 @@ earlier revision, or just visually compare what changed in each file since your 
 ## Public Template
 
 You should make your own private repository from the template oof this repo in which to complete your work:
-[`https://github.com/NYU-CSE-Software-Engineering/hw-rails-intro`](https://github.com/NYU-CSE-Software-Engineering/hw-rails-intro).
+[https://github.com/NYU-CSE-Software-Engineering/hw-rails-intro](https://github.com/NYU-CSE-Software-Engineering/hw-rails-intro).
 
 ## Parts
 - [Part 0 - Setup](Part-0-Setup.md)
@@ -24,4 +24,4 @@ You should make your own private repository from the template oof this repo in w
 - [Part 1 - Filter The Movies List By Rating](Part-1-Filter-Movies-List-By-Rating.md)
 - [Part 2 - Sort The Movie List](Part-2-Sort-Movie-List.md)
 - [Part 3 - Remember The Sorting And Filtering Settings](Part-3-Remember-The-Sorting-Filtering-Settings.md)
-- [Part 4 - Submitting Your Work](Part-4-Submitting.md)
+- [Part 4 - Submitting Your Work](Part-4-Submitting-Your-Work.md)
