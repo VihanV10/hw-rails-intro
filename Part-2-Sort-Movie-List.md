@@ -44,7 +44,7 @@ The result should look something like this:
 ratings should have the id `ratings_submit`.
 * Both pieces of the provided code, Part 1 and Part 2 of this assignment, should be placed inside the same `form_tag`.
 
-> ![HINT]
+> ![TIP]
 > **Adding parameters to existing RESTful routes**
 > 
 > The current RottenPotatoes views use the Rails-provided "resource-based routes" helper `movies_path` to generate the 
@@ -59,11 +59,11 @@ ratings should have the id `ratings_submit`.
 > `movies_path()`, think about how you might modify the call that generates the route helper in order to include 
 > information visible in `params` that would tell you which column header was clicked. 
 
-> [!HINT]
+> [!TIP]
 > Remember that every parameter in a route has a key and a value, so any argument you pass to `movies_path` 
 > would have to be a hash.
 
-> [!HINT]
+> [!TIP]
 > **Displaying things in the right order**
 > 
 > Databases are pretty good at returning collections of rows in sorted order according to one or more attributes. 
