@@ -3,8 +3,8 @@
 > [!IMPORTANT]
 > Read this whole page before starting to code!  There are hints and an overview of the big picture here!
 
-Enhance the RottenPotatoes application as follows: At the top of the All Movies listing, add some checkboxes that allow
-the user to filter the list to show only movies with certain MPAA ratings:
+Enhance the RottenPotatoes application as follows: At the top of the All Movies listing (`/movies`), add some
+checkboxes that allow the user to filter the list to show only movies with certain MPAA ratings:
 
 ![Screenshot. The filter should be included somewhere below the page heading. It should have a checkbox for each 
 rating, followed by a "Refresh" button.](lib/assets/filter-screenshot.png)
@@ -79,7 +79,7 @@ method in the model such as `Movie.with_ratings(ratings)` that takes an array of
 returns an `ActiveRecord` relation of movies whose rating matches (case-insensitively) anything in that array. To do 
 its job, this method can make use of `Movie.where`, which has various options to help you restrict the database query.
 
-> [!HINT]
+> [!TIP]
 > Read the [documentation](https://api.rubyonrails.org/classes/ActiveRecord/Base.html) about `ActiveRecord::Base` 
 > (on the docs page, click the flippy triangle next to the class name `ActiveRecord` and find the interior class 
 > `Base`) for examples of how to use `where` to do queries like this. The 
