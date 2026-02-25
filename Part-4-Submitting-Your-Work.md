@@ -2,7 +2,7 @@
 
 Deploying your finished app to Heroku by the homework deadline is part of the grading process. Even if you have code 
 checked in that works properly, you still need to also deploy it to Heroku to get full credit. You are welcome to also
-submit to Render, but be sure to review the app changes that need to occur so that it works sucessfully. This was
+submit to Render, but be sure to review the app changes that need to occur so that it works successfully. This was
 [discussed in Part 0.B](Part-0B-Preparation-To-Deploy-To-Render.md). Also, feel free to review the
 [Render documentation on Rails deployments](https://render.com/docs/deploy-rails-8) as well.
 
