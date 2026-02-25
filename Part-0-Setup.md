@@ -1,56 +1,73 @@
 ## GitHub setup
 
-You instructors will have told you whether you should be using a personal GitHub repository for this assignment, or whether you should be using a local git repository only.
+As with our other CHIPS, you will be using a personal GitHub repository for this assignment.
 
 ### Personal GitHub Repository
 
-As in previous CHIPS, you will need to authenticate `git` with GitHub to clone the repository for this assignment. The clone URL below will require that you use [public key authentication](https://docs.codio.com/common/settings/github.html).
+As in previous CHIPS, you will need to first copy this repo's template to your personal GitHub account.  Be sure not to
+put this in any team areas!
 
-If you course staff has provided you with a GitHub repository for this assignment, you should clone that repository using the organuzation name and repository name provided to you.
+Next, authenticate `git` with GitHub to clone the repository for this assignment. The clone instruction is now not new 
+to us, so we won't revisit those commands. 
 
-```sh
-git clone git@github.com:cs169/fa23-YOUR_GITHUB_USERNAME-chips-5.3.git rottenpotatoes-rails-intro
-cd rottenpotatoes-rails-intro
+## Docker Setup
+You will also likely want to build and run your Docker container. Our repo comes with a Dockerfile again, so we'll do
+the usual steps...
+```bash
+docker build -t hw-rails-intro .
+docker run -it -v "$(pwd):/app" -p 3000:3000 hw-rails-intro
+bundler install
+rails server -p 3000 -b 0.0.0.0
 ```
 
-### Template Repository (local git only)
+### Copy Our Template Repository, Clone To Your Local Machine
 
-If you are not using a personal repository, you can clone the template repository directly. This will create a local git repository on your machine, but it will not be connected to any remote repository on GitHub. You **should** still use git locally to manage your changes, but you won't be able to push your changes to GitHub.
+Copy our template repository to create a copy of our repo in your GitHub account. Then, locally on your machine, clone
+your repo. Your local repo will be connected to your (remote) repository on GitHub. Then, when using git locally, you 
+can push your changes to your repo on GitHub. The first step is done via the GitHub interface. Once copied to your
+GitHub account, you can clone and work as follows:
 
-```sh
-git clone git@github.com:saasbook/hw-rails-intro.git rottenpotatoes-rails-intro
-cd rottenpotatoes-rails-intro
+```bash
+git clone git@github.com:<youraccount>/hw-rails-intro.git hw-rails-intro
+cd hw-rails-intro
 ```
 
-Since this repository isn't shared with your team, you *can* push directly to the `main` branch. Still, it's a good habit to get into the practice of making a branch for changes you want to make, so you can later create a pull request before merging into `main` (which gives you the power to document your sets of commits thoroughly).
+It's a good habit to get into the practice of making a branch for changes you want to make, so you can later create a 
+pull request before merging into `main` (which gives you the power to document your sets of commits thoroughly).
 
-A good name for this branch would be something like `add-filtering`, which is descriptive of the feature you'll be adding in the next part of this assignment. You're also welcome to continue to choose a pair programming partner in your team for this CHIPS, in which case you should pick a repository to use between the two of you and add the other member as a collaborator to the repository. If you work in a pair, you should add both team members' GitHub usernames to the branch name so we can more easily see who worked with whom.
+A good name for this branch would be something like `add-filtering`, which is descriptive of the feature you'll be 
+adding in the next part of this assignment.
 
-```
+```bash
 git checkout -b <BRANCH_NAME>
+<make code changes to support the feature, then....
 git push -u origin <BRANCH_NAME>
 ```
 
-You will now have a local branch to make edits that is connected to an identically named remote branch on the GitHub repo to which you should push frequently using the following commands:
+You will now have a local branch to make edits that is connected to an identically named remote branch on the GitHub 
+repo to which you should push frequently using the following commands:
 
-```sh
+```bash
 git status # review your changes
 git add [...] # you will need to include your own files!
 git commit -m "your message here"
 git push origin
 ```
+## Bundler
+Whenever you start working on a Rails project, the first thing you should do is to run Bundler, to make sure all the 
+app's gems are installed. (We did this above when we fired up the Docker container.)
 
----
-
-Whenever you start working on a Rails project, the first thing you should do is to run Bundler, to make sure all the app's gems are installed.  Switch to the app's root directory (presumably `rottenpotatoes-rails-intro`) and run `bundle config set without 'production'` (you only need to specify `without 'production'` the first time, as this setting will be remembered on future runs of Bundler for this project).
-
+## Let's Migrate!
 Finally, run the initial migration, which (since it's the very first migration) will also create the database itself:
 
-```sh
+```bash
 bundle exec rails db:migrate
 ```
 
-You can probably get away with just running `rails db:migrate` directly, but starting with your commands with `bundle exec` asks bundler to run the command in the context of the dependencies specified in the current app's Gemfile (rather than potentially pulling in a version of `rails` installed globally on the server you're using, which can cause dependency headaches down the line). It's a good havit to get into.
+You can probably get away with just running `rails db:migrate` directly, but starting with your commands with 
+`bundle exec` asks bundler to run the command in the context of the dependencies specified in the current app's 
+`Gemfile` (rather than potentially pulling in a version of `rails` installed globally on the server you're using, 
+which can cause dependency headaches down the line). It's a good habit to get into.
 
 <details>
   <summary><strong>Self Check Question:</strong> How does Rails decide where and how to create the development database? (Hint: check the <code>db</code> and <code>config</code> subdirectories)</summary>
@@ -75,21 +92,3 @@ bundle exec rails db:seed
   <p><blockquote>A set of movie data which is specified in <code>db/seeds.rb</code></blockquote></p>
 </details>
 <br />
-
-At this point you should be able to run the app locally and visit it from a browser to make sure it's working before you go on.
-
-Follow the instructions below to run and preview a Rails app locally -- the steps are a bit different depending on whether you're using Codio.
-
-## If developing in Codio
-
-You can click the `Box URL` button like in previous CHIPS. If you want to do it manually, you can obtain your Codio subdomain name by going into any Codio terminal window and saying `hostname`.  Your subdomain will be a pair of random words--in this example we'll pretend it's `luminous-coconut`.
-
-1. Start the app in a terminal:  `bundle exec rails server -b 0.0.0.0` (again, `bundle exec` probably isn't necessary, but it's good to use it anyway!)
-2. Open a regular browser window to  `luminous-coconut-3000.codio.io` to visit the app's home page
-
-## If developing Locally
-
-If you're developing locally, the steps would instead be these:
-
-1. Start the app in a terminal: `bundle exec rails server`  (omit `-b 0.0.0.0`)
-2. Open a regular browser window to `localhost:3000/` to visit the app's home page (note the `:3000` rather than `-3000`)
