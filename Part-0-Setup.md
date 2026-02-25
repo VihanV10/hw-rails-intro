@@ -10,7 +10,7 @@ put this in any team areas!
 Next, authenticate `git` with GitHub to clone the repository for this assignment. The clone instruction is now not new 
 to us, so we won't revisit those commands. 
 
-## Docker Setup
+### Docker Setup
 You will also likely want to build and run your Docker container. Our repo comes with a Dockerfile again, so we'll do
 the usual steps...
 ```bash
@@ -53,11 +53,11 @@ git add [...] # you will need to include your own files!
 git commit -m "your message here"
 git push origin
 ```
-## Bundler
+### Bundler
 Whenever you start working on a Rails project, the first thing you should do is to run Bundler, to make sure all the 
 app's gems are installed. (We did this above when we fired up the Docker container.)
 
-## Let's Migrate!
+### Let's Migrate!
 Finally, run the initial migration, which (since it's the very first migration) will also create the database itself:
 
 ```bash
