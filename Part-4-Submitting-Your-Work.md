@@ -6,9 +6,10 @@ submit to Render, but be sure to review the app changes that need to occur so th
 [discussed in Part 0.B](Part-0B-Preparation-To-Deploy-To-Render.md). Also, feel free to review the
 [Render documentation on Rails deployments](https://render.com/docs/deploy-rails-8) as well.
 
-Once you're confident the functionality works correctly on Heroku or Render, submit the URI of your deployed Heroku 
-app in a text file named `rottenpotatoes-url.txt`. There is no need to check this file into your repository, but as we
-have done previously, submit this file to Gradescope for grading.
+Once you're confident the functionality works correctly on [Heroku](Part-0A-Preparation-To-Deploy-To-Heroku.md) or 
+[Render](Part-0B-Preparation-To-Deploy-To-Render.md), submit the URI of your deployed app in a text file named 
+`rottenpotatoes-url.txt`. There is no need to check this file into your repository, but as we have done previously, 
+submit this file to Gradescope for grading.
 
 > [!WARNING]
 > Please be careful to use **https** and not **http**, that is, submit `https://your-app.herokuapp.com` **and NOT**

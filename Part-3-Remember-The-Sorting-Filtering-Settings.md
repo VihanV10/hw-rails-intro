@@ -47,7 +47,7 @@ the `session`, once serialized, cannot exceed the size of an HTTP cookie (4 KiB)
 ## Hints and caveats
 
 Once you have determined the correct sorting and filtering settings, before you render the view, use `session[]` to 
-hold on to the those settings.
+hold on to those settings.
 
 Now modify the `index` action to detect whether _no_ `params[]` were passed that indicate sorting or filtering: this 
 would be one way to tell that the user is landing on the home page _not_ having followed one of the special links we 

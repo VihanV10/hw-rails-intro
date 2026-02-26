@@ -19,7 +19,7 @@ submit tag:
     <label class="form-label me-2" for="sort_by">Sort by:</label>
     <%= select_tag :sort_by,
                    options_for_select([["Title", "title"],
-                                       ["Release date", "release_date"]],
+                                       ["Release Date", "release_date"]],
                                        @sort_by),
                    id:    "sort_by",
                    class: "form-select d-inline w-auto" %>

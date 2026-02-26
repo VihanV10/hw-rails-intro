@@ -1,37 +1,15 @@
-## GitHub setup
+# Part 0 - GitHub setup
 
 As with our other CHIPS, you will be using a personal GitHub repository for this assignment.
 
-### Personal GitHub Repository
-
-As in previous CHIPS, you will need to first copy this repo's template to your personal GitHub account.  Be sure not to
-put this in any team areas!
-
-Next, authenticate `git` with GitHub to clone the repository for this assignment. The clone instruction is now not new 
-to us, so we won't revisit those commands. 
-
-### Docker Setup
-You will also likely want to build and run your Docker container. Our repo comes with a Dockerfile again, so we'll do
-the usual steps...
-```bash
-docker build -t hw-rails-intro .
-docker run -it -v "$(pwd):/app" -p 3000:3000 hw-rails-intro
-bundler install
-rails server -p 3000 -b 0.0.0.0
-```
-
 ### Copy Our Template Repository, Clone To Your Local Machine
 
-Copy our template repository to create a copy of our repo in your GitHub account. Then, locally on your machine, clone
-your repo. Your local repo will be connected to your (remote) repository on GitHub. Then, when using git locally, you 
-can push your changes to your repo on GitHub. The first step is done via the GitHub interface. Once copied to your
-GitHub account, you can clone and work as follows:
+As in previous CHIPS, you will need to first duplicate this repo's template to your personal GitHub account.Copy our
+template repository to create a copy of our repo in your personal GitHub account, and not in any team areas!
+Then, authenticate `git` with GitHub to clone the repository for this assignment. The clone instruction is no longer new 
+to us, so we won't revisit those commands.
 
-```bash
-git clone git@github.com:<youraccount>/hw-rails-intro.git hw-rails-intro
-cd hw-rails-intro
-```
-
+### Create A New Branch For Your Feature
 It's a good habit to get into the practice of making a branch for changes you want to make, so you can later create a 
 pull request before merging into `main` (which gives you the power to document your sets of commits thoroughly).
 
@@ -40,7 +18,7 @@ adding in the next part of this assignment.
 
 ```bash
 git checkout -b <BRANCH_NAME>
-<make code changes to support the feature, then....
+<make code changes to support the feature, then....>
 git push -u origin <BRANCH_NAME>
 ```
 
@@ -53,6 +31,17 @@ git add [...] # you will need to include your own files!
 git commit -m "your message here"
 git push origin
 ```
+
+### Docker Setup
+You will also likely want to build and run your Docker container. Our repo comes with a Dockerfile again, so we'll do
+the usual steps...
+```bash
+docker build -t hw-rails-intro .
+docker run -it -v "$(pwd):/app" -p 3000:3000 hw-rails-intro
+bundler install
+rails server -p 3000 -b 0.0.0.0
+```
+
 ### Bundler
 Whenever you start working on a Rails project, the first thing you should do is to run Bundler, to make sure all the 
 app's gems are installed. (We did this above when we fired up the Docker container.)
@@ -92,3 +81,10 @@ bundle exec rails db:seed
   <p><blockquote>A set of movie data which is specified in <code>db/seeds.rb</code></blockquote></p>
 </details>
 <br />
+
+## Next
+In this CHIP, as we did with others, we will need to deploy our application _somewhere_ in the cloud. Our two primary 
+supported choices are linked below. You are welcome to use either, but recognize that the steps will vary, mostly due 
+to the use of a database that is required for our application.
+- [Part 0.A - Preparation To Deploy To Heroku](Part-0A-Preparation-To-Deploy-To-Heroku.md)
+- [Part 0.B - Preparation To Deploy To Render](Part-0B-Preparation-To-Deploy-To-Render.md)

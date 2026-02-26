@@ -39,8 +39,8 @@ git push heroku main
     Are you sure you want to continue connecting (yes/no)?
     Please type 'yes' or 'no':
 
-Is the app running on Heroku? If you navigate to the heroku URL that is printed above the blue text at the end of the 
-results from `git push heroku master` you will likely see error messages. This is due to the fact that the database
+Is the app running on Heroku? If you navigate to the Heroku URL that is printed above the blue text at the end of the 
+results from `git push Heroku main` you will likely see error messages. This is due to the fact that the database
 has not been created and associated with the app in Heroku. Let's address that next.
 
 Create a postrgesql database and attach it to the web application as follows:

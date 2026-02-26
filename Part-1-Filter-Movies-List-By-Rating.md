@@ -12,7 +12,7 @@ rating, followed by a "Refresh" button.](lib/assets/filter-screenshot.png)
 When the Refresh button is pressed, the list of movies is redisplayed showing only those movies whose ratings were 
 checked. If _no_ boxes are checked, after a user hits the Refresh button, all movies should be listed, and all 
 checkboxes should be checked. It also applies to the first time when the user visits the page (i.e. when the user 
-isits the page, all checkboxes should be checked).
+visits the page, all checkboxes should be checked).
 
 This will require a couple of pieces of code. We have provided the code that generates the checkboxes form, which you 
 can include in the `index.html.erb` template.  (The `id` attributes on some of the elements are required for the 
@@ -139,7 +139,7 @@ Use the same technique as in previous CHIPS to create a pull request, then merge
 repository's `main` branch.
 
 Once you've done this, your GitHub repository's `main` branch will be up to date with your latest changes. Return to
-a shell on your local mahcine and check out the `main` branch on your local repository:
+a shell on your local machine and check out the `main` branch on your local repository:
 
 ```bash
 git checkout main

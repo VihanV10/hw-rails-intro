@@ -14,7 +14,7 @@ earlier revision, or just visually compare what changed in each file since your 
 
 ## Public Template
 
-You should make your own private repository from the template oof this repo in which to complete your work:
+You should make your own private repository from the template of this repo in which to complete your work:
 [https://github.com/NYU-CSE-Software-Engineering/hw-rails-intro](https://github.com/NYU-CSE-Software-Engineering/hw-rails-intro).
 
 ## Parts
